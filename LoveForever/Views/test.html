@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../Scripts/jquery-1.10.2.js"></script>
+    <script src="../Scripts/blocksit.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            //blocksit define
+            $(window).load(function () {
+                $('#container').BlocksIt({
+                    numOfCol: 5,
+                    offsetX: 8,
+                    offsetY: 8,
+                    blockElement: '.grid'
+                });
+            });
+            //window resize
+            var currentWidth = 1100;
+            $(window).resize(function () {
+                var winWidth = $(window).width();
+                var conWidth;
+                if (winWidth < 660) {
+                    conWidth = 440;
+                    col = 2
+                } else if (winWidth < 880) {
+                    conWidth = 660;
+                    col = 3
+                } else if (winWidth < 1100) {
+                    conWidth = 880;
+                    col = 4;
+                } else {
+                    conWidth = 1100;
+                    col = 5;
+                }
+                if (conWidth != currentWidth) {
+                    currentWidth = conWidth;
+                    $('#container').width(conWidth);
+                    $('#container').BlocksIt({
+                        numOfCol: col,
+                        offsetX: 8,
+                        offsetY: 8
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div class="grid class">...</div>
+        <div class="grid class2" data-size="2">...</div>
+        <div class="grid">...</div>
+        <div class="grid class" data-size="3">...</div>
+        <div class="grid">...</div>
+    </div>
+</body>
+</html>
